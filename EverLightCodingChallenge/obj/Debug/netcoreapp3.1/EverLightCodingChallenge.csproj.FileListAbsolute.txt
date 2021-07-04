@@ -1,0 +1,12 @@
+C:\Users\Anson\source\repos\EverLightCodingChallenge\EverLightCodingChallenge\bin\Debug\netcoreapp3.1\EverLightCodingChallenge.exe
+C:\Users\Anson\source\repos\EverLightCodingChallenge\EverLightCodingChallenge\bin\Debug\netcoreapp3.1\EverLightCodingChallenge.deps.json
+C:\Users\Anson\source\repos\EverLightCodingChallenge\EverLightCodingChallenge\bin\Debug\netcoreapp3.1\EverLightCodingChallenge.runtimeconfig.json
+C:\Users\Anson\source\repos\EverLightCodingChallenge\EverLightCodingChallenge\bin\Debug\netcoreapp3.1\EverLightCodingChallenge.runtimeconfig.dev.json
+C:\Users\Anson\source\repos\EverLightCodingChallenge\EverLightCodingChallenge\bin\Debug\netcoreapp3.1\EverLightCodingChallenge.dll
+C:\Users\Anson\source\repos\EverLightCodingChallenge\EverLightCodingChallenge\bin\Debug\netcoreapp3.1\EverLightCodingChallenge.pdb
+C:\Users\Anson\source\repos\EverLightCodingChallenge\EverLightCodingChallenge\obj\Debug\netcoreapp3.1\EverLightCodingChallenge.AssemblyInfoInputs.cache
+C:\Users\Anson\source\repos\EverLightCodingChallenge\EverLightCodingChallenge\obj\Debug\netcoreapp3.1\EverLightCodingChallenge.AssemblyInfo.cs
+C:\Users\Anson\source\repos\EverLightCodingChallenge\EverLightCodingChallenge\obj\Debug\netcoreapp3.1\EverLightCodingChallenge.csproj.CoreCompileInputs.cache
+C:\Users\Anson\source\repos\EverLightCodingChallenge\EverLightCodingChallenge\obj\Debug\netcoreapp3.1\EverLightCodingChallenge.dll
+C:\Users\Anson\source\repos\EverLightCodingChallenge\EverLightCodingChallenge\obj\Debug\netcoreapp3.1\EverLightCodingChallenge.pdb
+C:\Users\Anson\source\repos\EverLightCodingChallenge\EverLightCodingChallenge\obj\Debug\netcoreapp3.1\EverLightCodingChallenge.genruntimeconfig.cache
