@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Anson\\source\\repos\\EverLightCodingChallenge\\EverLightCodingChallenge\\EverLightCodingChallenge.csproj": {}
+    "C:\\Users\\Anson\\source\\repos\\EverLightCodingChallenge\\EverLightCodingChallenge\\EverLightCodingChallenge\\EverLightCodingChallenge.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Anson\\source\\repos\\EverLightCodingChallenge\\EverLightCodingChallenge\\EverLightCodingChallenge.csproj": {
+    "C:\\Users\\Anson\\source\\repos\\EverLightCodingChallenge\\EverLightCodingChallenge\\EverLightCodingChallenge\\EverLightCodingChallenge.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Anson\\source\\repos\\EverLightCodingChallenge\\EverLightCodingChallenge\\EverLightCodingChallenge.csproj",
+        "projectUniqueName": "C:\\Users\\Anson\\source\\repos\\EverLightCodingChallenge\\EverLightCodingChallenge\\EverLightCodingChallenge\\EverLightCodingChallenge.csproj",
         "projectName": "EverLightCodingChallenge",
-        "projectPath": "C:\\Users\\Anson\\source\\repos\\EverLightCodingChallenge\\EverLightCodingChallenge\\EverLightCodingChallenge.csproj",
+        "projectPath": "C:\\Users\\Anson\\source\\repos\\EverLightCodingChallenge\\EverLightCodingChallenge\\EverLightCodingChallenge\\EverLightCodingChallenge.csproj",
         "packagesPath": "C:\\Users\\Anson\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Anson\\source\\repos\\EverLightCodingChallenge\\EverLightCodingChallenge\\obj\\",
+        "outputPath": "C:\\Users\\Anson\\source\\repos\\EverLightCodingChallenge\\EverLightCodingChallenge\\EverLightCodingChallenge\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -43,6 +43,28 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.AspNetCore.Hosting.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Microsoft.Extensions.Hosting": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.Extensions.Logging.Console": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

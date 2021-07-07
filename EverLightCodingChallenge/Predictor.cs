@@ -1,26 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.Extensions.Logging;
+using System;
 
 namespace EverLightCodingChallenge
 {
     /// <summary>
     /// Manages Predictions of the Game
     /// </summary>
-    public class Predictor
+    public class Predictor : IPredictor
     {
+        private readonly ILogger _logger;
+        private Node RootNode { get; set; }
+        private int TreeDepth { get; set; }
+        private int InfoDepth { get; set; }
+
+        public Predictor(ILogger<Predictor> logger)
+        {
+            _logger = logger;
+        }
+
+        /// <summary>
+        /// Initializes the predictor
+        /// </summary>
+        /// <param name="infoDepth">How many layers of info is being factored into the prediction</param>
+        /// <param name="treeDepth">How many layers of there are in the tree</param>
+        /// <param name="rootNode">The Root of the Node in a game to calculate prediction</param>
+        public void InitializePredictor(int infoDepth, int treeDepth, Node rootNode)
+        {
+            this.RootNode = rootNode;
+            this.TreeDepth = treeDepth;
+            this.InfoDepth = infoDepth;
+        }
+
         /// <summary>
         /// Predicts which container the ball will fall into based on the available information on gates (depth)
         /// Each layer of info of depth increases accuracy of predictions with 100% accuracy when there is all information
         /// Method will make a random guess based on the remaining unknown Gates
         /// </summary>
-        /// <param name="infoDepth">How many layers of info is being factored into the prediction</param>
-        /// <param name="treeDepth">How many layers of there are in the tree</param>
-        /// <param name="rootNode">The Root of the Node in a game to calculate prediction</param>
         /// <returns>Prediction of Container number where the ball will land on</returns>
-        public int Predict(int infoDepth, int treeDepth, Node rootNode)
+        public int Predict()
         {
-            return FollowPath(rootNode, treeDepth, infoDepth);
+            _logger.LogInformation("Layers of Containers factored into prediction calculation: {0}", InfoDepth);
+            int prediction =  FollowPath(RootNode, TreeDepth, InfoDepth);
+            _logger.LogInformation("Container predicted to be empty: {0}", prediction);
+            return prediction;
         }
 
         /// <summary>
@@ -39,8 +61,8 @@ namespace EverLightCodingChallenge
             {
                 double possibilities = NumContainersBallCanFallInto(treeDepth, infoDepth);
                 int firstEndNode = LeftmostEndNodeFromCurrent(node);
-                Console.WriteLine("Number of possible destination based on revealed info: {0}", possibilities);
-                Console.WriteLine("Chances the prediction is correct: ~{0}%", Math.Round(100*1/(double)possibilities));
+                _logger.LogInformation("Number of possible destination based on revealed info: {0}", possibilities);
+                _logger.LogInformation("Chances the prediction is correct: ~{0}%", Math.Round(100 * 1 / (double)possibilities));
                 Random random = new Random();
                 return random.Next(firstEndNode, firstEndNode + (int)possibilities);
             }
@@ -62,9 +84,12 @@ namespace EverLightCodingChallenge
         /// <param name="prediction">predicted empty container</param>
         /// <param name="actual">actual empty container</param>
         /// <returns></returns>
-        public bool Check(int prediction, int actual)
+        public void Check(int prediction, int actual)
         {
-            return prediction == actual;
+            if (prediction == actual)
+                _logger.LogInformation("Prediction ({0}) matches with Actual ({1})", prediction, actual);
+            else
+                _logger.LogInformation("Prediction ({0}) did not match with Actual ({1})", prediction, actual);
         }
 
         /// <summary>

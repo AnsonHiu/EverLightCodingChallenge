@@ -1,35 +1,43 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 
 namespace EverLightCodingChallenge
 {
     /// <summary>
     /// Manages the whole tree in the game
     /// </summary>
-    public class NodeManager
+    public class NodeManager : INodeManager
     {
+        private readonly ILogger _logger;
         /// <summary>
         /// Root of all nodes
         /// </summary>
-        public Node RootNode { get; }
+        public Node RootNode { get; set; }
         /// <summary>
         /// Depth of tree
         /// </summary>
-        private readonly int _Depth;
+        public int Depth { get; set; }
         private int _EndNodeCount;
+
+        public NodeManager(ILogger<NodeManager> logger)
+        {
+            _logger = logger;
+        }
 
         /// <summary>
         /// Initializes Node Manager with created containers
         /// </summary>
         /// <param name="depth">The depth of the tree</param>
-        public NodeManager(int depth)
+        public void InitializeNodeManager(int depth)
         {
+            this.Depth = depth;
             _EndNodeCount = 0;
             //Root node has a hierarchy level(depth) of 0
             RootNode = new Node(0);
             //If there's no depth (only 1 node), RootNode is the end node
             if (depth == 0)
-                RootNode.EndNodeNumber = _EndNodeCount+1;
-            this._Depth = depth;
+                RootNode.EndNodeNumber = _EndNodeCount + 1;
+            this.Depth = depth;
             //Creates all child nodes from the root node
             CreateChildNodes(RootNode);
         }
@@ -53,7 +61,7 @@ namespace EverLightCodingChallenge
             Node nextNode = node.BallPass();
             if (nextNode.HierarchyLevel == -1)
             {
-                Console.WriteLine("Ball landed in node: " + node.EndNodeNumber);
+                _logger.LogInformation("Ball landed in node: " + node.EndNodeNumber);
                 return node.EndNodeNumber;
             }
             else
@@ -67,7 +75,7 @@ namespace EverLightCodingChallenge
         /// <param name="depth">Depth of tree</param>
         private void CreateChildNodes(Node node)
         {
-            if (node.HierarchyLevel!= _Depth)
+            if (node.HierarchyLevel!= Depth)
             {
                 node.LeftNode = CreateChildNode(node);
                 CreateChildNodes(node.LeftNode);
@@ -84,7 +92,7 @@ namespace EverLightCodingChallenge
         private Node CreateChildNode(Node node)
         {
             Node newNode = new Node(node.HierarchyLevel + 1);
-            if (newNode.HierarchyLevel == _Depth) 
+            if (newNode.HierarchyLevel == Depth) 
             {
                 newNode.EndNodeNumber = _EndNodeCount + 1;
                 _EndNodeCount++;

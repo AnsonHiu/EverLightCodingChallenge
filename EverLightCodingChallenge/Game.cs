@@ -1,13 +1,15 @@
 ﻿using System;
+using Microsoft.Extensions.Logging;
 
 namespace EverLightCodingChallenge
 {
     /// <summary>
     /// Manages the state of the Game
     /// </summary>
-    public class Game
+    public class Game : IGame
     {
-        public NodeManager NodeManager { get; }
+        private readonly ILogger _logger;
+        public INodeManager NodeManager { get; set; }
         /// <summary>
         /// Keeps a count of all the end nodes that has balls in them
         /// </summary>
@@ -20,17 +22,24 @@ namespace EverLightCodingChallenge
         /// Count of how many end containers have a ball in them
         /// </summary>
         public int EndContainerCount { get; set; }
+        public int Depth { get; set; }
 
-        public Game(int depth)
+        public Game(ILogger<Game> logger)
         {
-            //Initializes node manager, along with the tree
-            NodeManager = new NodeManager(depth);
+            _logger = logger;
+        }
+
+        public void InitializeGame(int depth)
+        {
+            _logger.LogInformation("Initializing Game...");
+            //Initializing game variables
             this.EndContainerCount = 0;
             //Calculate amount of end containers based on depth and initialize array to hold all end containers that has a ball
             int amountOfEndContainers = Convert.ToInt32(Math.Pow(2, depth));
             //1 End Container won't have a ball, so ball count is end node size - 1
             _BallCount = amountOfEndContainers - 1;
-            Console.WriteLine("Ball Count: {0}", _BallCount);
+            //Console.WriteLine("Ball Count: {0}", _BallCount);
+            _logger.LogInformation("Ball Count: {0}", _BallCount);
             this._ContainersWithBall = new int[amountOfEndContainers - 1];
         }
 

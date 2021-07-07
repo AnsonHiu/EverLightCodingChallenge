@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using EverLightCodingChallenge;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,9 @@ namespace EverLightCodingChallengeTests
         [TestMethod()]
         public void NodeManagerTest()
         {
-            NodeManager nodeManager = new NodeManager(4);
+            var serviceProvider = Util.GetServiceProvider();
+            INodeManager nodeManager = serviceProvider.GetService<NodeManager>();
+            nodeManager.InitializeNodeManager(4);
             Node leftMostNode = GetLeftMostNode(nodeManager.RootNode);
             Assert.AreEqual(leftMostNode.HierarchyLevel, 4);
         }
@@ -23,9 +26,13 @@ namespace EverLightCodingChallengeTests
         [TestMethod()]
         public void PutBallInTreeTest()
         {
-            NodeManager nodeManager = new NodeManager(3);
-            NodeManager nodeManager2 = new NodeManager(2);
-            NodeManager nodeManager3 = new NodeManager(1);
+            var serviceProvider = Util.GetServiceProvider();
+            INodeManager nodeManager = serviceProvider.GetService<NodeManager>();
+            nodeManager.InitializeNodeManager(3);
+            INodeManager nodeManager2 = serviceProvider.GetService<NodeManager>();
+            nodeManager2.InitializeNodeManager(2);
+            INodeManager nodeManager3 = serviceProvider.GetService<NodeManager>();
+            nodeManager3.InitializeNodeManager(1);
 
             int endContainer = nodeManager.PutBallInTree();
             int endContainer2 = nodeManager2.PutBallInTree();
